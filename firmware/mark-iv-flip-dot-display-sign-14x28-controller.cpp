@@ -5,7 +5,7 @@ Created by Antonio Carioca, March 3, 2014.
 
 //#include "Arduino.h"
 
-#include <avr/pgmspace.h>
+//#include <avr/pgmspace.h>
 #include "mark-iv-flip-dot-display-sign-14x28-controller.h"
 
 /* CONSTANTS */

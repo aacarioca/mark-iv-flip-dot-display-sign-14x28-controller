@@ -1,9 +1,9 @@
- #include "FlipDotDisplayController_14x28_2xFP2800A.h"
-#include <avr/pgmspace.h>
+#include "FlipDotDisplayController_14x28_2xFP2800A.h"
+//#include <avr/pgmspace.h>
 
 
-//byte FONTE[][5] = {
-prog_uchar FONTE[][5] PROGMEM = {
+byte FONTE[][5] = {
+//prog_uchar FONTE[][5] PROGMEM = {
   {0,0,0,0,0},
   {0,56,125,56,0},// !
   {80,96,0,80,96},//"

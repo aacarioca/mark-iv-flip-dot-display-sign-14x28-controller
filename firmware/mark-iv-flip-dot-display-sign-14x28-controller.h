@@ -7,12 +7,12 @@
 #define mark-iv-flip-dot-display-sign-14x28-controller_h
 
 //#include "Arduino.h" 
-#include <avr/pgmspace.h>
+//#include <avr/pgmspace.h>
 
 class DotDisplay{
 public:
-	DotDisplay(int dataPin, int clockPin, int latchPin, int _enableSubPanel1Pin, int _enableSubPanel2Pin, int fontWidth, int fontHeight, prog_uchar fonteParam[][5]);//uses progmem
-	//DotDisplay(int dataPin, int clockPin, int latchPin, byte fonteParam[][5]);//uses regular memory
+	//DotDisplay(int dataPin, int clockPin, int latchPin, int _enableSubPanel1Pin, int _enableSubPanel2Pin, int fontWidth, int fontHeight, prog_uchar fonteParam[][5]);//uses progmem
+	DotDisplay(int dataPin, int clockPin, int latchPin,int _enableSubPanel1Pin, int _enableSubPanel2Pin, int fontWidth, int fontHeight, byte fonteParam[][5]);//uses regular memory
 	void setSerial(HardwareSerial* hwPrint);
 	byte generateColumnCode (byte col);
 	void updateDisplay(char textMessage[]);
@@ -30,8 +30,8 @@ private:
         int _maxRowLength;
         int _maxNumRows;
 	byte alphabet[][5];
-	//byte (*_fonteParam)[5];//regular memory
-	prog_uchar (*_fonteParam)[5];//progmem
+	byte (*_fonteParam)[5];//regular memory
+	//prog_uchar (*_fonteParam)[5];//progmem
 };
 
 #endif

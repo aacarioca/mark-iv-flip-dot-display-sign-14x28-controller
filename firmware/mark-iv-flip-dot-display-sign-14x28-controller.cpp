@@ -22,8 +22,8 @@ const int DISPLAY_SUBPANEL_QTY = 2;
 // NOTE: MOVING ALL THE ARRAY BELOW TO PROGMEM
 
 
-DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin, int enableSubPanel1Pin, int enableSubPanel2Pin, int fontWidth, int fontHeight, prog_uchar fonteParam[][5]){
-	//DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin, byte fonteParam[][5]){
+//DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin, int enableSubPanel1Pin, int enableSubPanel2Pin, int fontWidth, int fontHeight, prog_uchar fonteParam[][5]){
+DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin,  int enableSubPanel1Pin, int enableSubPanel2Pin, int fontWidth, int fontHeight, byte fonteParam[][5]){
 
 	pinMode(dataPin, OUTPUT);
 	pinMode(clockPin, OUTPUT);
@@ -143,7 +143,9 @@ void DotDisplay::updateDisplay(char textMessage[]){
 			//for(byte row = 0; row < _fontHeight; row++)
                         int characterRow = 0;
                         for(byte row = currentRow; row < (currentRow + _fontHeight); row++){
-				bool isOn = bitRead(pgm_read_byte(&(_fonteParam[alphabetIndex][calculatedColumn])),6-characterRow);//pgm_read_byte(&(mainPatterns[currentPattern][0]));
+				//bool isOn = bitRead(pgm_read_byte(&(_fonteParam[alphabetIndex][calculatedColumn])),6-characterRow);
+				bool isOn = bitRead((byte)_fonteParam[alphabetIndex][calculatedColumn],6-row);//this index is needed as we are going from back to front
+		  
 				setDot(col, row, isOn);
 				if(printer) {
 					//printer->print(isOn);

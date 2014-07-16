@@ -1,0 +1,7 @@
+{
+  "name": "mark-iv-flip-dot-display-sign-14x28-controller",
+  "author": "Antonio Guto Carioca <guto.carioca@gmail.com>",
+  "license": "MIT",
+  "version": "0.0.10",
+  "description": "A library that enables a Spark Core to control a Mark IV Flip-Dot Display Sign 14x28 Pixels 319460-806 Ferranti-Packard"
+}

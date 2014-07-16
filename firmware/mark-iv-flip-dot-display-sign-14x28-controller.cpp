@@ -3,10 +3,10 @@ DisplayController.h - Library for Controlling a 14x28 bits FlipDot display sign 
 Created by Antonio Carioca, March 3, 2014.
 */
 
-#include "Arduino.h"
+//#include "Arduino.h"
 
 #include <avr/pgmspace.h>
-#include "FlipDotDisplayController_14x28_2xFP2800A.h"
+#include "mark-iv-flip-dot-display-sign-14x28-controller.h"
 
 /* CONSTANTS */
 //const int DISPLAY_SIZE = 4;

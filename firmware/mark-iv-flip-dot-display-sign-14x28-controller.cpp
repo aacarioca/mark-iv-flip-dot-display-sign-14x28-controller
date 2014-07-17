@@ -44,8 +44,10 @@ DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin,  int enableSubPa
 	_fontHeight = fontHeight;
 	_fonteParam = fonteParam; 
 	
-    _maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
-    _maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
+    //_maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
+	_maxNumRows = (int)((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
+    //_maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
+    _maxRowLength = (int)((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
     _maxMessageLength = _maxRowLength * _maxNumRows;
 
 }
@@ -77,7 +79,8 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 
 	//enables next sunpanel
 	if(col>=DISPLAY_PIXEL_WIDTH){
-		subPanel =  floor(col / DISPLAY_PIXEL_WIDTH)+1;
+		//subPanel =  floor(col / DISPLAY_PIXEL_WIDTH)+1;
+		subPanel =  (int)(col / DISPLAY_PIXEL_WIDTH)+1;
 		col=col-DISPLAY_PIXEL_WIDTH;
 	}
 
@@ -94,7 +97,8 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 	// IGNOREx4 + ROWx4 + IGNOREx1 + COLUMNx5 + DATAx2
 	byte dataPins = on?1:2;
 	byte colFirstThreeDigits = (col % 7)+1;
-	byte colLastTwoDigits = floor(col/7);
+	//byte colLastTwoDigits = floor(col/7);
+	byte colLastTwoDigits = (int)(col/7);
 	byte colByte = colFirstThreeDigits | (colLastTwoDigits << 3);
 	byte rowFirstThreeDigits = (row % 7)+1;
         byte rowLastDigit = row<7;

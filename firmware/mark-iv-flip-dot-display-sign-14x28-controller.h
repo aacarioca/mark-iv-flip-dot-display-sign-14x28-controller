@@ -10,6 +10,8 @@
 //#include <avr/pgmspace.h>
 #include "application.h"
 
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+
 class DotDisplay{
 public:
 	//DotDisplay(int dataPin, int clockPin, int latchPin, int _enableSubPanel1Pin, int _enableSubPanel2Pin, int fontWidth, int fontHeight, prog_uchar fonteParam[][5]);//uses progmem
@@ -35,4 +37,4 @@ private:
 	//prog_uchar (*_fonteParam)[5];//progmem
 };
 
-#endif
+//#endif

@@ -7,6 +7,7 @@ Created by Antonio Carioca, March 3, 2014.
 
 //#include <avr/pgmspace.h>
 #include "mark-iv-flip-dot-display-sign-14x28-controller.h"
+#include "application.h"
 
 /* CONSTANTS */
 //const int DISPLAY_SIZE = 4;

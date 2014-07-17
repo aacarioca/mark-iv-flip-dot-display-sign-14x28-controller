@@ -43,27 +43,28 @@ DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin,  int enableSubPa
 	_fontHeight = fontHeight;
 	_fonteParam = fonteParam; 
 	
-        _maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
-        _maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
-        _maxMessageLength = _maxRowLength * _maxNumRows;
+    _maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
+    _maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
+    _maxMessageLength = _maxRowLength * _maxNumRows;
 
 }
-
+/*
 void DotDisplay::setSerial(HardwareSerial* hwPrint){
 	printer = hwPrint; //operate on the address of print
 	if(printer) {
 		printer->begin(9600);
 	}
 }
+*/
 
 
 void DotDisplay::setDot(byte col, byte row, bool on){
 
 	
-        //accidentally reversed two data pins, so reversing back on the code here
-        //on = !on;
-  
-        //2 pins - Data
+	//accidentally reversed two data pins, so reversing back on the code here
+	//on = !on;
+
+	//2 pins - Data
 	//5 pins - Column
 	//4 pins - Rows
 
@@ -79,13 +80,15 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 		col=col-DISPLAY_PIXEL_WIDTH;
 	}
 
-        if(printer) {
-          printer->print("col: ");
+	/*
+    if(printer) {
+      printer->print("col: ");
 	  printer->print(col);
 	  printer->print(", ");
 	  printer->print("subPanel: ");
 	  printer->println(subPanel);
 	}
+	*/
 
 	// IGNOREx4 + ROWx4 + IGNOREx1 + COLUMNx5 + DATAx2
 	byte dataPins = on?1:2;
@@ -136,29 +139,35 @@ void DotDisplay::updateDisplay(char textMessage[]){
                 }
 
 
-                //set all the bits in the next _fontWidth columns on the display
+        //set all the bits in the next _fontWidth columns on the display
 		for(byte col = currentColumn; col<(currentColumn+_fontWidth); col++){
 			
 			byte calculatedColumn = (col)%(_fontWidth+1);
 			//for(byte row = 0; row < _fontHeight; row++)
-                        int characterRow = 0;
-                        for(byte row = currentRow; row < (currentRow + _fontHeight); row++){
+			int characterRow = 0;
+			for(byte row = currentRow; row < (currentRow + _fontHeight); row++){
 				//bool isOn = bitRead(pgm_read_byte(&(_fonteParam[alphabetIndex][calculatedColumn])),6-characterRow);
 				bool isOn = bitRead((byte)_fonteParam[alphabetIndex][calculatedColumn],6-row);//this index is needed as we are going from back to front
 		  
 				setDot(col, row, isOn);
+				/*
 				if(printer) {
-					//printer->print(isOn);
+					printer->print(isOn);
 				}
-                                characterRow++;
+				*/
+                characterRow++;
 			}
+			/*
 			if(printer) {
-				//printer->println("");
+				printer->println("");
 			}
+			*/
 		}
+		/*
 		if(printer) {
-			//printer->println("*******");
+			printer->println("*******");
 		}
+		*/
 		currentColumn = currentColumn+(_fontWidth+1);
-	        }
+	}
 }

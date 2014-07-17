@@ -6,11 +6,11 @@
 //#ifndef mark-iv-flip-dot-display-sign-14x28-controller_h
 //#define mark-iv-flip-dot-display-sign-14x28-controller_h
 
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+
 //#include "Arduino.h" 
 //#include <avr/pgmspace.h>
 #include "application.h"
-
-#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
 
 class DotDisplay{
 public:

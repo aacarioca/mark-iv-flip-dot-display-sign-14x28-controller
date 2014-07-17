@@ -3,11 +3,12 @@
   Created by Antonio Carioca, July 4, 2012.
 */
 
-#ifndef mark-iv-flip-dot-display-sign-14x28-controller_h
-#define mark-iv-flip-dot-display-sign-14x28-controller_h
+//#ifndef mark-iv-flip-dot-display-sign-14x28-controller_h
+//#define mark-iv-flip-dot-display-sign-14x28-controller_h
 
 //#include "Arduino.h" 
 //#include <avr/pgmspace.h>
+#include "application.h"
 
 class DotDisplay{
 public:

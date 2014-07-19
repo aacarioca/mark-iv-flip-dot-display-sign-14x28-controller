@@ -125,12 +125,12 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 }
 
 //void DotDisplay::updateDisplay(char *textMessage){
-//void DotDisplay::updateDisplay(char textMessage[], char log[]){
-void DotDisplay::updateDisplay(char textMessage[]){
+/void DotDisplay::updateDisplay(char textMessage[], char log[]){
+//void DotDisplay::updateDisplay(char textMessage[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 
 	
-	//char temp[500];
+	char temp[500];
 	//sprintf(log, "DISPLAY_PIXEL_HEIGHT:%i, _fontHeight:%i, DISPLAY_PIXEL_WIDTH:%i, DISPLAY_SUBPANEL_QTY:%i, _fontWidth:%i, _maxMessageLength:%i, _maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ",DISPLAY_PIXEL_HEIGHT, _fontHeight, DISPLAY_PIXEL_WIDTH,DISPLAY_SUBPANEL_QTY,_fontWidth, _maxMessageLength, _maxRowLength, _maxNumRows,textMessage);
 	
 	//goes through all characters
@@ -138,7 +138,8 @@ void DotDisplay::updateDisplay(char textMessage[]){
 		//get a character from the message
 		int alphabetIndex = textMessage[ch] - ' '; //Subtract '@' so we get a number
 		
-		//sprintf(temp, "Character[%i]:%c ",ch, textMessage[ch]);
+		sprintf(temp, "Character[%i]:%c ",ch, textMessage[ch]);
+		strcat(log,temp);
 		
 		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
 		
@@ -147,6 +148,8 @@ void DotDisplay::updateDisplay(char textMessage[]){
 			currentColumn=0;
 			currentRow=currentRow+_fontHeight;
 		}
+		sprintf(temp, " - Current Row:%i, Current Column:%i ",currentRow, CurrentColumn);
+		strcat(log,temp);
 
 
 		//set all the bits in the next _fontWidth columns on the display

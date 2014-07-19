@@ -129,7 +129,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 
 	
-	strcpy(log,"");
+	strcat(log,"");
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  

@@ -162,7 +162,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 					printer->print(isOn);
 				}
 				*/
-				char dot[1];
+				char dot[2];
 				if (isOn) dot = "1"; else dot = "0"; 
 				strcat(log,dot);
 				

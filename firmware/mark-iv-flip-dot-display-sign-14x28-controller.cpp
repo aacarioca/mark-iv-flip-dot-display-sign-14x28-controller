@@ -125,7 +125,7 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 }
 
 //void DotDisplay::updateDisplay(char *textMessage){
-/void DotDisplay::updateDisplay(char textMessage[], char log[]){
+void DotDisplay::updateDisplay(char textMessage[], char log[]){
 //void DotDisplay::updateDisplay(char textMessage[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 

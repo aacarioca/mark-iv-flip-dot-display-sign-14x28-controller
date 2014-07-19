@@ -148,7 +148,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 			currentColumn=0;
 			currentRow=currentRow+_fontHeight;
 		}
-		sprintf(temp, " - Current Row:%i, Current Column:%i ",currentRow, CurrentColumn);
+		sprintf(temp, " - Current Row:%i, Current Column:%i ",currentRow, currentColumn);
 		strcat(log,temp);
 
 

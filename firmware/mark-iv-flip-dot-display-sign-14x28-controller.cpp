@@ -163,8 +163,8 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				}
 				*/
 				char dot;
-				if (isOn) dot = '1' else dot = '0'; 
-				strcat(log,isOn);
+				if (isOn) dot = '1'; else dot = '0'; 
+				strcat(log,dot);
 				
 				characterRow++;
 			}

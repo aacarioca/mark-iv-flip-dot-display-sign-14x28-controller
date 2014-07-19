@@ -130,7 +130,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentRow = 0; 
 	
 	char temp[500];
-	sprintf(log, "_maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ", _maxRowLength, _maxNumRows,textMessage[]);
+	sprintf(log, "_maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ", _maxRowLength, _maxNumRows,textMessage);
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  

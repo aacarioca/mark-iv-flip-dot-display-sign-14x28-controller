@@ -129,7 +129,8 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 
 	
-	strcat(log,"");
+	char temp[500];
+	sprintf(log, "_maxRowLength:%i, _maxNumRows:%i }", _maxRowLength, _maxNumRows);
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  
@@ -139,9 +140,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 		//Serial.println(alphabetIndex);
 		//strcat(log,"Index: ");
 		//strcat(log,alphabetIndex);
-		strcat(log,"Letter: ");
-		log[8]=textMessage[ch];
-		log[9]='\0';
+		sprintf(temp, "Character:%c ", textMessage[ch]);
 		
 		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
 		
@@ -174,7 +173,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				}else {
 					strcpy(dot,"0");
 				} 
-				strcat(log,dot);
+				strcat(temp,dot);
 				
 				characterRow++;
 			}
@@ -183,15 +182,16 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				printer->println("");
 			}
 			*/
-			strcat(log," ");
+			strcat(temp," ");
 		}
 		/*
 		if(printer) {
-			printer->println("*******");
+			printer->println("/");
 		}
 		*/
-		strcat(log,"*********");
+		strcat(temp,"/");
 		
 		currentColumn = currentColumn+(_fontWidth+1);
 	}
+	strcat(log,temp);
 }

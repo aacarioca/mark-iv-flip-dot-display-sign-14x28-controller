@@ -168,7 +168,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				}else {
 					strcpy(dot,"0");
 				} 
-				//strcat(log,dot);
+				strcat(log,dot);
 				
 				characterRow++;
 			}

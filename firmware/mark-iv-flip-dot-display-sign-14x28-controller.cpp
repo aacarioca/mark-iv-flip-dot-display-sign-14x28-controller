@@ -130,7 +130,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentRow = 0; 
 	
 	char temp[500];
-	sprintf(log, "_maxMessageLength:%1, _maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s\n", _maxMessageLength, _maxRowLength, _maxNumRows,textMessage);
+	sprintf(log, "DISPLAY_PIXEL_HEIGHT:%i, _fontHeight:%i, DISPLAY_PIXEL_WIDTH:%i, DISPLAY_SUBPANEL_QTY:%i, _fontWidth:%i, _maxMessageLength:%i, _maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ",DISPLAY_PIXEL_HEIGHT, _fontHeight, DISPLAY_PIXEL_WIDTH,DISPLAY_SUBPANEL_QTY,_fontWidth, _maxMessageLength, _maxRowLength, _maxNumRows,textMessage);
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  
@@ -192,6 +192,6 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 		strcat(temp,"/");
 		
 		currentColumn = currentColumn+(_fontWidth+1);
+		strcat(log,temp);
 	}
-	strcat(log,temp);
 }

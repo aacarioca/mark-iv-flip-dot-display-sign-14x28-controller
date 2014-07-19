@@ -125,22 +125,20 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 }
 
 //void DotDisplay::updateDisplay(char *textMessage){
-void DotDisplay::updateDisplay(char textMessage[], char log[]){
+//void DotDisplay::updateDisplay(char textMessage[], char log[]){
+void DotDisplay::updateDisplay(char textMessage[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 
 	
-	char temp[500];
-	sprintf(log, "DISPLAY_PIXEL_HEIGHT:%i, _fontHeight:%i, DISPLAY_PIXEL_WIDTH:%i, DISPLAY_SUBPANEL_QTY:%i, _fontWidth:%i, _maxMessageLength:%i, _maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ",DISPLAY_PIXEL_HEIGHT, _fontHeight, DISPLAY_PIXEL_WIDTH,DISPLAY_SUBPANEL_QTY,_fontWidth, _maxMessageLength, _maxRowLength, _maxNumRows,textMessage);
+	//char temp[500];
+	//sprintf(log, "DISPLAY_PIXEL_HEIGHT:%i, _fontHeight:%i, DISPLAY_PIXEL_WIDTH:%i, DISPLAY_SUBPANEL_QTY:%i, _fontWidth:%i, _maxMessageLength:%i, _maxRowLength:%i, _maxNumRows:%i, MESSAGE:%s ",DISPLAY_PIXEL_HEIGHT, _fontHeight, DISPLAY_PIXEL_WIDTH,DISPLAY_SUBPANEL_QTY,_fontWidth, _maxMessageLength, _maxRowLength, _maxNumRows,textMessage);
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  
 		//get a character from the message
 		int alphabetIndex = textMessage[ch] - ' '; //Subtract '@' so we get a number
 		
-		//Serial.println(alphabetIndex);
-		//strcat(log,"Index: ");
-		//strcat(log,alphabetIndex);
-		sprintf(temp, "Character[%i]:%c ",ch, textMessage[ch]);
+		//sprintf(temp, "Character[%i]:%c ",ch, textMessage[ch]);
 		
 		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
 		
@@ -163,10 +161,6 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				
 				setDot(col, row, isOn);
 				/*
-				if(printer) {
-					printer->print(isOn);
-				}
-				*/
 				char dot[2];
 				if (isOn) {
 					strcpy(dot,"1"); 
@@ -174,24 +168,15 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 					strcpy(dot,"0");
 				} 
 				strcat(temp,dot);
+				*/
 				
 				characterRow++;
 			}
-			/*
-			if(printer) {
-				printer->println("");
-			}
-			*/
-			strcat(temp," ");
+			//strcat(temp," ");
 		}
-		/*
-		if(printer) {
-			printer->println("/");
-		}
-		*/
-		strcat(temp,"/");
+		//strcat(temp,"/");
 		
 		currentColumn = currentColumn+(_fontWidth+1);
-		strcat(log,temp);
+		//strcat(log,temp);
 	}
 }

@@ -138,7 +138,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 		
 		//Serial.println(alphabetIndex);
 		strcat(log,"Index: ");
-		strcat(log,alphabetIndex);
+		//strcat(log,alphabetIndex);
 		strcat(log,", Letter:");
 		strcat(log,textMessage[ch]);
 		strcat(log," => ");

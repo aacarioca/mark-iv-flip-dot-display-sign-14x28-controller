@@ -137,11 +137,11 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 		int alphabetIndex = textMessage[ch] - ' '; //Subtract '@' so we get a number
 		
 		//Serial.println(alphabetIndex);
-		strcat(log,"Index: ");
+		//strcat(log,"Index: ");
 		//strcat(log,alphabetIndex);
-		strcat(log,", Letter:");
-		strcat(log,textMessage[ch]);
-		strcat(log," => ");
+		strcat(log,"Letter: ");
+		log[8]=textMessage[ch];
+		log[9]='\0';
 		
 		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
 		

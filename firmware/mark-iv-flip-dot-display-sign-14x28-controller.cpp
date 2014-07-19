@@ -129,7 +129,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentColumn = 0; 
 	int currentRow = 0; 
 	
-	strcpy(log,"");
+	//strcpy(log,"");
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  
@@ -164,7 +164,7 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				*/
 				char dot[2];
 				if (isOn) strcpy(dot,"1"); else strcpy(dot,"0"); 
-				strcat(log,dot);
+				//strcat(log,dot);
 				
 				characterRow++;
 			}
@@ -173,14 +173,14 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 				printer->println("");
 			}
 			*/
-			strcat(log,"");
+			//strcat(log,"");
 		}
 		/*
 		if(printer) {
 			printer->println("*******");
 		}
 		*/
-		strcat(log,"*********");
+		//strcat(log,"*********");
 		
 		currentColumn = currentColumn+(_fontWidth+1);
 	}

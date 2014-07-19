@@ -44,11 +44,11 @@ DotDisplay::DotDisplay(int dataPin, int clockPin, int latchPin,  int enableSubPa
 	_fontHeight = fontHeight;
 	_fonteParam = fonteParam; 
 	
-    //_maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
+	//_maxNumRows = floor((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
 	_maxNumRows = (int)((DISPLAY_PIXEL_HEIGHT+1)/(_fontHeight));
-    //_maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
-    _maxRowLength = (int)((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
-    _maxMessageLength = _maxRowLength * _maxNumRows;
+	//_maxRowLength = floor((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
+	_maxRowLength = (int)((DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY+1) / (_fontWidth+1));
+	_maxMessageLength = _maxRowLength * _maxNumRows;
 
 }
 /*
@@ -85,12 +85,12 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 	}
 
 	/*
-    if(printer) {
-      printer->print("col: ");
-	  printer->print(col);
-	  printer->print(", ");
-	  printer->print("subPanel: ");
-	  printer->println(subPanel);
+	if(printer) {
+	printer->print("col: ");
+	printer->print(col);
+	printer->print(", ");
+	printer->print("subPanel: ");
+	printer->println(subPanel);
 	}
 	*/
 
@@ -101,7 +101,7 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 	byte colLastTwoDigits = (int)(col/7);
 	byte colByte = colFirstThreeDigits | (colLastTwoDigits << 3);
 	byte rowFirstThreeDigits = (row % 7)+1;
-        byte rowLastDigit = row<7;
+	byte rowLastDigit = row<7;
 	byte rowByte = rowFirstThreeDigits | (rowLastDigit << 3);
 	byte firstbyte = (dataPins) | (colByte << 2);
 	byte secondbyte = rowByte;
@@ -125,9 +125,11 @@ void DotDisplay::setDot(byte col, byte row, bool on){
 }
 
 //void DotDisplay::updateDisplay(char *textMessage){
-void DotDisplay::updateDisplay(char textMessage[]){
+void DotDisplay::updateDisplay(char textMessage[], char log[]){
 	int currentColumn = 0; 
-        int currentRow = 0; 
+	int currentRow = 0; 
+	
+	strcpy(log,"");
 	
 	//goes through all characters
 	for (int ch = 0; ch < (_maxMessageLength);ch++){  
@@ -138,13 +140,13 @@ void DotDisplay::updateDisplay(char textMessage[]){
 		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
 		
 		//push it to the next row if necessary
-                if((currentColumn + _fontWidth) > (DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY)){
-                  currentColumn=0;
-                  currentRow=currentRow+_fontHeight;
-                }
+		if((currentColumn + _fontWidth) > (DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY)){
+			currentColumn=0;
+			currentRow=currentRow+_fontHeight;
+		}
 
 
-        //set all the bits in the next _fontWidth columns on the display
+		//set all the bits in the next _fontWidth columns on the display
 		for(byte col = currentColumn; col<(currentColumn+_fontWidth); col++){
 			
 			byte calculatedColumn = (col)%(_fontWidth+1);
@@ -153,26 +155,31 @@ void DotDisplay::updateDisplay(char textMessage[]){
 			for(byte row = currentRow; row < (currentRow + _fontHeight); row++){
 				//bool isOn = bitRead(pgm_read_byte(&(_fonteParam[alphabetIndex][calculatedColumn])),6-characterRow);
 				bool isOn = bitRead((byte)_fonteParam[alphabetIndex][calculatedColumn],6-row);//this index is needed as we are going from back to front
-		  
+				
 				setDot(col, row, isOn);
 				/*
 				if(printer) {
 					printer->print(isOn);
 				}
 				*/
-                characterRow++;
+				strcat(log,isOn);
+				
+				characterRow++;
 			}
 			/*
 			if(printer) {
 				printer->println("");
 			}
 			*/
+			strcat(log,"");
 		}
 		/*
 		if(printer) {
 			printer->println("*******");
 		}
 		*/
+		strcat(log,"*********");
+		
 		currentColumn = currentColumn+(_fontWidth+1);
 	}
 }

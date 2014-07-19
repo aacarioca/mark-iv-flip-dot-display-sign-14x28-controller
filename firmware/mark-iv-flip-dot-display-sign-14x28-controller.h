@@ -18,7 +18,7 @@ public:
 	DotDisplay(int dataPin, int clockPin, int latchPin,int _enableSubPanel1Pin, int _enableSubPanel2Pin, int fontWidth, int fontHeight, byte fonteParam[][5]);//uses regular memory
 	//void setSerial(HardwareSerial* hwPrint);
 	byte generateColumnCode (byte col);
-	void updateDisplay(char textMessage[]);
+	void updateDisplay(char textMessage[], char log[]);
 	void setDot(byte col, byte row, bool on);
 private:
 	//HardwareSerial* printer;

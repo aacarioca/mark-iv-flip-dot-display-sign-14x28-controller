@@ -141,7 +141,12 @@ void DotDisplay::updateDisplay(char textMessage[], char log[]){
 		sprintf(temp, "{Char[%i]:%c ",ch, textMessage[ch]);
 		strcat(log,temp);
 		
-		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))) alphabetIndex=0; 
+		//populate remaining blank characters with BLANK
+		if ((alphabetIndex < 0) or (ch >=strlen(textMessage))){
+			sprintf(temp, ">> BLANK! Length:%i, Index:%i }",strlen(textMessage), alphabetIndex);
+			strcat(log,temp);
+			alphabetIndex=0; 
+		}
 		
 		//push it to the next row if necessary
 		if((currentColumn + _fontWidth) > (DISPLAY_PIXEL_WIDTH * DISPLAY_SUBPANEL_QTY)){
